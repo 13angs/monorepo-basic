@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "common": "libs/common",
+    "ecom": "apps/ecom",
+    "ecom-e2e": "apps/ecom-e2e"
+  }
+}
