@@ -1,12 +1,10 @@
 import NxWelcome from './nx-welcome';
-import {Common, Appbar} from '@mrb/common';
 
 import { Route, Routes, Link } from 'react-router-dom';
 export function App() {
   return (
     <>
       <NxWelcome title="ecom" />
-      <Appbar/>
       <div />
 
       {/* START: routes */}
