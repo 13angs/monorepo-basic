@@ -8,14 +8,18 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
 /* eslint-disable-next-line */
-export interface BasicAppbarProps {}
+export interface BasicAppbarProps {
+  onMenuClick: React.MouseEventHandler;
+}
 
 export function BasicAppbar(props: BasicAppbarProps) {
+  const {onMenuClick} = props;
   return (
-    <Box sx={{ flexGrow: 1, width: '100%' }}>
-      <AppBar position="static" sx={{padding: '0 0'}} >
-        <Toolbar sx={{padding: 0}}>
+    <Box sx={{ flexGrow: 1}}>
+      <AppBar position="static">
+        <Toolbar>
           <IconButton
+            onClick={onMenuClick}
             size="large"
             edge="start"
             color="inherit"
