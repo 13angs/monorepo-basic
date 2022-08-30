@@ -1,21 +1,22 @@
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import App from './app';
+import HomePage from './home';
 describe('App', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <BrowserRouter>
-        <App />
+        <HomePage />
       </BrowserRouter>
     );
     expect(baseElement).toBeTruthy();
   });
-  // it('should have a greeting as the title', () => {
-  //   const { getByText } = render(
-  //     <BrowserRouter>
-  //       <App />
-  //     </BrowserRouter>
-  //   );
-  //   expect(getByText(/Welcome ecom/gi)).toBeTruthy();
-  // });
+
+  it('should have a greeting as the title', () => {
+    const { getByText } = render(
+      <BrowserRouter>
+        <HomePage />
+      </BrowserRouter>
+    );
+    expect(getByText(/MRB/gi)).toBeTruthy();
+  });
 });
