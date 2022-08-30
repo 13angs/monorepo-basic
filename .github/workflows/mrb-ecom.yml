@@ -6,11 +6,13 @@ on:
       - main
     paths:
       - 'apps/ecom/**'
+      - 'libs/components/**'
   push:
     branches:
       - main
     paths:
       - 'apps/ecom/**'
+      - 'libs/components/**'
   
 jobs:
   deploy:
