@@ -59,6 +59,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          file: ./apps/ecom/Dockerfile
           push: true
           tags: 13angs/mrb-ecom:latest
           labels: ${{ steps.meta.outputs.labels }}
