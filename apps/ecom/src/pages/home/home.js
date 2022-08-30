@@ -15,7 +15,7 @@ export function HomePage() {
   }
   return (
     <>
-      <BasicAppbar onMenuClick={toggleDrawer(true)}/>
+      <BasicAppbar appbarTitle='MRB' onMenuClick={toggleDrawer(true)}/>
       <Box sx={{display: 'flex', flexGrow: 1, justifyContent: 'center'}}>
           <ImageList sx={{ width: 500, height: 650 }} cols={3} rowHeight={164}>
           {itemData.map((item) => (
