@@ -1,11 +1,36 @@
 import * as React from 'react';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
 import Box from '@mui/material/Box';
 import {BasicAppbar, BasicDrawer} from '@mrb/components';
+import { Link, useLocation } from 'react-router-dom';
+
+import HomeIcon from '@mui/icons-material/Home';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import InfoIcon from '@mui/icons-material/Info';
+
+const menus = [
+  {name: 'Product', icon: <InventoryIcon/>},
+  {name: 'Article', icon: <AssignmentIcon/>},
+  {name: 'Cart', icon: <ShoppingCartIcon/>},
+  {name: 'About', icon: <InfoIcon/>},
+];
+
+const listItems = [
+  {name: 'Home', icon: <HomeIcon/>},
+  {name: 'Product', icon: <InventoryIcon/>},
+  {name: 'Article', icon: <AssignmentIcon/>},
+  {name: 'Cart', icon: <ShoppingCartIcon/>},
+  {name: 'About', icon: <InfoIcon/>},
+];
+
+const tabLabel1 = 'Menu';
+const tabLabel2 = 'Demo';
+
 
 export function HomePage() {
   const [open, setOpen] = React.useState(false);
+  const location = useLocation();
 
   const toggleDrawer = (open) => (event) => {
       setOpen(open);
@@ -13,77 +38,52 @@ export function HomePage() {
   const handleClose = () => {
     setOpen(false);
   }
+
+  const hash = location.hash;
+  React.useEffect(( ) => {
+
+    if(hash.length > 1 && hash.includes('#'))
+    {
+      const section = document.querySelector(hash);  
+      // console.dir(section);
+  
+      section.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+    }
+  }, [hash]);
+
+
   return (
     <>
-      <BasicAppbar appbarTitle='MRB' onMenuClick={toggleDrawer(true)}/>
-      <Box sx={{display: 'flex', flexGrow: 1, justifyContent: 'center'}}>
-          <ImageList sx={{ width: 500, height: 650 }} cols={3} rowHeight={164}>
-          {itemData.map((item) => (
-              <ImageListItem key={item.img}>
-              <img
-                  src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                  srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.title}
-                  loading="lazy"
-              />
-              </ImageListItem>
-          ))}
-          </ImageList>
+      <BasicAppbar 
+        appbarTitle='MRB' 
+        onMenuClick={toggleDrawer(true)}
+        menus={menus}
+      />
+      <Box sx={{display: 'flex', flexGrow: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+          <Link to={'#hello-world'}>
+              Click
+          </Link>
+          <Box sx={{height: '1000px', width: '100%'}}>
+
+          </Box>
+          <h3 id="hello-world">Hello world</h3>
+
+          <Box sx={{height: '1000px', width: '100%'}}>
+
+          </Box>
+          <h3 id="hello-there">Hello there</h3>
       </Box>
-      <BasicDrawer anchor='left' open={open} onClose={handleClose}/>
+      <BasicDrawer 
+        anchor='left'
+        drawerWitdh={250}
+        open={open} 
+        onClose={handleClose}
+        listItems={listItems}
+        tabLabel1={tabLabel1}
+        tabLabel2={tabLabel2}
+      />
     </>
   );
 }
 
 export default HomePage;
-
-const itemData = [
-  {
-    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-    title: 'Breakfast',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-    title: 'Burger',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-    title: 'Camera',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-    title: 'Coffee',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-    title: 'Hats',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-    title: 'Honey',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-    title: 'Basketball',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-    title: 'Fern',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-    title: 'Mushrooms',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-    title: 'Tomato basil',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-    title: 'Sea star',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-    title: 'Bike',
-  },
-];
