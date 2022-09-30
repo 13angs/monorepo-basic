@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {BasicAppbar, BasicDrawer} from '@mrb/components';
+import {BasicAppbar, BasicDrawer, CartDrawer} from '@mrb/components';
 import { Link, useLocation } from 'react-router-dom';
 
 import HomeIcon from '@mui/icons-material/Home';
@@ -30,13 +30,25 @@ const tabLabel2 = 'Demo';
 
 export function HomePage() {
   const [open, setOpen] = React.useState(false);
+  const [cartOpen, setCartOpen] = React.useState(false);
   const location = useLocation();
 
-  const toggleDrawer = (open) => (event) => {
+  const toggleDrawer = (open) => {
       setOpen(open);
-    };
+  };
+
+  // console.log(cartOpen)
+
+  const toggleCartDrawer = (open) => {
+    setCartOpen(open);
+  }
+
   const handleClose = () => {
     setOpen(false);
+  }
+
+  const handleCartClose = () => {
+    setCartOpen(false);
   }
 
   const hash = location.hash;
@@ -56,7 +68,8 @@ export function HomePage() {
     <>
       <BasicAppbar 
         appbarTitle='MRB' 
-        onMenuClick={toggleDrawer(true)}
+        onMenuClick={() => toggleDrawer(true)}
+        onCartClick={() => toggleCartDrawer(true)}
         menus={menus}
       />
       <Box sx={{display: 'flex', flexGrow: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
@@ -78,6 +91,16 @@ export function HomePage() {
         drawerWitdh={250}
         open={open} 
         onClose={handleClose}
+        listItems={listItems}
+        tabLabel1={tabLabel1}
+        tabLabel2={tabLabel2}
+      />
+
+      <CartDrawer 
+        anchor='right'
+        drawerWitdh={250}
+        open={cartOpen}
+        onClose={handleCartClose}
         listItems={listItems}
         tabLabel1={tabLabel1}
         tabLabel2={tabLabel2}

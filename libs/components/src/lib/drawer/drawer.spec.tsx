@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import Drawer from './drawer';
+import CartDrawer from './cart.drawer';
 
 import HomeIcon from '@mui/icons-material/Home';
 import InventoryIcon from '@mui/icons-material/Inventory';
@@ -31,4 +32,26 @@ describe('Drawer', () => {
                                   />);
     expect(baseElement).toBeTruthy();
   });
+});
+
+describe('Cart Drawer', () => {
+  const show = () => {
+    console.log('show');
+  }
+
+  it('should render the Cart Drawer successfully', () => {
+    const {baseElement} = render(
+      <CartDrawer 
+        drawerWitdh={250} 
+        open={true} 
+        onClose={show} 
+        anchor='right'
+        listItems={listItems}
+        tabLabel1='tabLabel1'
+        tabLabel2='tabLabel2'
+      />
+    );
+
+    expect(baseElement).toBeTruthy();
+  })
 });

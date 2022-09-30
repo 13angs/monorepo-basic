@@ -50,6 +50,7 @@ type MenuType = {
 
 export interface BasicAppbarProps {
   onMenuClick: React.MouseEventHandler;
+  onCartClick: React.MouseEventHandler;
   appbarTitle: string;
   menus: Array<MenuType>;
 }
@@ -57,7 +58,7 @@ export interface BasicAppbarProps {
 
 
 export function BasicAppbar(props: BasicAppbarProps) {
-  const {onMenuClick, appbarTitle, menus} = props;
+  const {onMenuClick, onCartClick, appbarTitle, menus} = props;
   return (
     <Root id={`${component_name}-root`}>
       <AppBar position="static" id={`${component_name}-appbar`}>
@@ -98,9 +99,12 @@ export function BasicAppbar(props: BasicAppbarProps) {
               ))}
             </Stack>
 
-          <IconButton sx={{color: theme => theme.palette.background.paper}}>
-            <ShoppingCartIcon/>
-          </IconButton>
+            <IconButton 
+              sx={{color: theme => theme.palette.background.paper}}
+              onClick={onCartClick}
+            >
+              <ShoppingCartIcon/>
+            </IconButton>
           </Container>
         </Toolbar>
       </AppBar>
